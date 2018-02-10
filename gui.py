@@ -7,7 +7,7 @@ import diabetes
 
 class Diabetes(QWidget):
 
-    def __init__(self):
+    def __init__(self) -> None:
         super(Diabetes, self).__init__()
         self.l1 = QLineEdit()
         self.l2 = QLineEdit()
@@ -28,7 +28,7 @@ class Diabetes(QWidget):
         self.v_box = QVBoxLayout()
         self.initui()
 
-    def initui(self):
+    def initui(self)-> None:
         self.l1.setValidator(QDoubleValidator())
         self.l2.setValidator(QDoubleValidator())
         self.l3.setValidator(QDoubleValidator())
@@ -64,7 +64,7 @@ class Diabetes(QWidget):
         self.v_box.addWidget(self.submit)
         self.setLayout(self.v_box)
 
-    def test_input(self):
+    def test_input(self) -> None:
         my_dict = {"B":float(self.l1.text()), "C":float(self.l2.text()),"D":float(self.l3.text()), "E":float(self.l4.text()), "F": float(self.l5.text())}
         self.output = diabetes.check_input(my_dict)
         #print(self.output)
@@ -80,7 +80,7 @@ class Diabetes(QWidget):
         msg.exec_()
         
        
-    def mwindow(self):
+    def mwindow(self) -> None:
         self.setFixedSize(300, 300)
         self.setWindowTitle("Diabetes Detection")
         self.show()
