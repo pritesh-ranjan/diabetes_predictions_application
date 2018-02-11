@@ -1,7 +1,7 @@
 # Diabetes predictions application in Python
 
 This application is made using sklearn machine learning libraries and pyqt5 for its graphical user interface.
-Support Vector Machine classifies input data with a 80% accuracy.
+Support Vector Machine classifies input data with a 80% accuracy. We have choosen the PIMA indians diabetes dataset from UCI archive.
 
 ## USAGE
 
