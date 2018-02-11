@@ -66,12 +66,12 @@ class Diabetes(QWidget):
 
     def test_input(self) -> None:
         my_dict = {"B":float(self.l1.text()), "C":float(self.l2.text()),"D":float(self.l3.text()), "E":float(self.l4.text()), "F": float(self.l5.text())}
-        self.output = diabetes.check_input(my_dict)
+        output = diabetes.check_input(my_dict)
         #print(self.output)
         msg = QMessageBox()
         msg.setWindowTitle("Prediction")
         #
-        if self.output is 0:
+        if output is 0:
             msg.setText("You do not seem to have diabetes.")
             msg.setIcon(QMessageBox.Information)
         else:
