@@ -3,6 +3,8 @@
 This application is made using sklearn machine learning libraries and pyqt5 for its graphical user interface.
 Support Vector Machine classifies input data with a 80% accuracy. We have choosen the PIMA indians diabetes dataset from UCI archive.
 
+<img src="./screenshots/1.png" width="250">
+
 ## USAGE
 
 Firstly install all dependencies via the following command.
