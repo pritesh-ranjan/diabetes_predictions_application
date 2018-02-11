@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+
+"""
+GUI for diabetes prediction.
+"""
 import sys
 
 from PyQt5.QtWidgets import QWidget, QLabel, QPushButton, QLineEdit, QVBoxLayout, QHBoxLayout, QApplication, QMessageBox
@@ -7,7 +12,7 @@ import diabetes
 
 class Diabetes(QWidget):
 
-    def __init__(self) -> None:
+    def __init__(self) -> None :
         super(Diabetes, self).__init__()
         self.l1 = QLineEdit()
         self.l2 = QLineEdit()
@@ -24,11 +29,13 @@ class Diabetes(QWidget):
         self.h3 = QHBoxLayout()
         self.h4 = QHBoxLayout()
         self.h5 = QHBoxLayout()
+        self.clbtn = QPushButton("CLEAR")
         self.submit = QPushButton("SUBMIT")
         self.v_box = QVBoxLayout()
         self.initui()
 
-    def initui(self)-> None:
+    def initui(self) -> None:
+        """ The gui is created and widgets elements are set here """
         self.l1.setValidator(QDoubleValidator())
         self.l2.setValidator(QDoubleValidator())
         self.l3.setValidator(QDoubleValidator())
@@ -59,28 +66,43 @@ class Diabetes(QWidget):
         self.h5.addWidget(self.t5)
         self.h5.addWidget(self.l5)        
         self.v_box.addLayout(self.h5)
+        self.h6 = QHBoxLayout()
         self.submit.clicked.connect(lambda: self.test_input())
         self.submit.setToolTip("Click to check if patient has diabetes")
-        self.v_box.addWidget(self.submit)
+        self.clbtn.clicked.connect(lambda: self.clfn())
+        self.h6.addWidget(self.submit)
+        self.h6.addWidget(self.clbtn)
+        self.v_box.addLayout(self.h6)
         self.setLayout(self.v_box)
 
+    def clfn(self):
+        """ clear all the text fields via clear button"""
+        self.l1.clear()
+        self.l2.clear()
+        self.l3.clear()
+        self.l3.clear()
+        self.l4.clear()
+        self.l5.clear()
+
     def test_input(self) -> None:
+        """ test for diabetes"""
         my_dict = {"B":float(self.l1.text()), "C":float(self.l2.text()),"D":float(self.l3.text()), "E":float(self.l4.text()), "F": float(self.l5.text())}
         output = diabetes.check_input(my_dict)
         #print(self.output)
         msg = QMessageBox()
         msg.setWindowTitle("Prediction")
         #
-        if output is 0:
+        if output==0:
             msg.setText("You do not seem to have diabetes.")
             msg.setIcon(QMessageBox.Information)
         else:
-            msg.setText("There is 80% chance that you have from diabetes.")
+            msg.setText("There is 80% chance that you have diabetes.")
             msg.setIcon(QMessageBox.Warning)
         msg.exec_()
         
        
     def mwindow(self) -> None:
+        """ window features are set here and application is loded into display"""
         self.setFixedSize(300, 300)
         self.setWindowTitle("Diabetes Detection")
         self.show()

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 #Diabetes Prediction Using Support Vector Machine
 import pickle
 import pandas as pd
