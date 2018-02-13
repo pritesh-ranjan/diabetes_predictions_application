@@ -2,6 +2,8 @@
 
 #Diabetes Prediction Using Support Vector Machine
 import pickle
+import os
+import sys
 import pandas as pd
 from sklearn.metrics import accuracy_score
 from sklearn.cross_validation import train_test_split
@@ -32,9 +34,21 @@ def test(X_test,Y_test):
     pre=p.predict(X_test)
     print (accuracy_score(Y_test,pre)) #Prints the accuracy of the model
 
+
+def find_data_file(filename):
+    if getattr(sys, "frozen", False):
+        # The application is frozen.
+        datadir = os.path.dirname(sys.executable)
+    else:
+        # The application is not frozen.
+        datadir = os.path.dirname(__file__)
+
+    return os.path.join(datadir, filename)
+
+
 def check_input(data) ->int :
     df=pd.DataFrame(data=data,index=[0])
-    with open('svc.pkl','rb') as model:
+    with open(find_data_file('svc.pkl'),'rb') as model:
         p=pickle.load(model)
     op=p.predict(df)
     return op[0]
